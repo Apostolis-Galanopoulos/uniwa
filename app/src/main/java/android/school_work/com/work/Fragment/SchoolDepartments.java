@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-public class SchoolDepartments extends Fragment implements DepartmentsAdapter.AdapterListener {
+public class SchoolDepartments extends Fragment {
 
     private static final String TAG = SchoolDepartments.class.getSimpleName();
 
@@ -122,7 +122,7 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
                 something_going_wrong.setVisibility(View.GONE);
                 swipe_refresh.setRefreshing(false);
                 departmentsList = result;
-                adapter = new DepartmentsAdapter(result, mContext.getApplication(), SchoolDepartments.this);
+                adapter = new DepartmentsAdapter(result, mContext.getApplication());
                 schoolDepartmentsList.setAdapter(adapter);
                 schoolDepartmentsList.setLayoutManager(new LinearLayoutManager(mContext));
 
@@ -136,10 +136,6 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
         });
     }
 
-    @Override
-    public void ScrollEnding(int position) {
-
-    }
 
     public interface SchoolDepartmentsListener {
         void onSelection(SchoolDepartmentsModel row);

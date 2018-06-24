@@ -1,9 +1,7 @@
 package android.school_work.com.work.Adapter;
 
 import android.annotation.SuppressLint;
-import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.os.SystemClock;
 import android.school_work.com.work.Model.SchoolDepartmentsModel;
 import android.school_work.com.work.R;
 import android.support.v7.widget.RecyclerView;
@@ -20,15 +18,10 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     ArrayList<SchoolDepartmentsModel> list = new ArrayList<>();
     Context context;
-    private Fragment fragment;
-    private DepartmentsAdapter.AdapterListener Adapter_listener;
-    private long mLastClickTime = 0;
 
-    public DepartmentsAdapter(ArrayList<SchoolDepartmentsModel> list, Context context, Fragment _fragment) {
+    public DepartmentsAdapter(ArrayList<SchoolDepartmentsModel> list, Context context) {
         this.list = list;
-        this.fragment = _fragment;
         this.context = context;
-        this.Adapter_listener = (DepartmentsAdapter.AdapterListener) this.fragment;
     }
 
     @Override
@@ -56,11 +49,6 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final SchoolDepartmentsModel _model = list.get(position);
-        if (position == (getItemCount() - 1)) {
-            if (SystemClock.elapsedRealtime() - mLastClickTime < 500) return;
-            mLastClickTime = SystemClock.elapsedRealtime();
-            Adapter_listener.ScrollEnding(position);
-        }
 
         switch (_model.getType()) {
             case SchoolDepartmentsModel.NORMAL_TYPE:
@@ -114,10 +102,6 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         public void onClick(View view, int position);
 
         public void onLongClick(View view, int position);
-    }
-
-    public interface AdapterListener {
-        public void ScrollEnding(int position);
     }
 
     public class NormalTypeViewHolder extends RecyclerView.ViewHolder {

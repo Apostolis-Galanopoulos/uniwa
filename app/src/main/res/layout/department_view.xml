@@ -20,7 +20,7 @@
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleTextAppearance="@style/Toolbar.TitleText"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="snap"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
