@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.school_work.com.work.Fragment.DepartmentView;
 import android.school_work.com.work.Fragment.SchoolDepartments;
 import android.school_work.com.work.Helper.ServiceInfo;
+import android.school_work.com.work.Helper.SessionManager;
 import android.school_work.com.work.Model.SchoolDepartmentsModel;
 import android.school_work.com.work.Services.SoundService;
 import android.support.v4.app.Fragment;
@@ -17,12 +18,15 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity implements SchoolDepartments.SchoolDepartmentsListener, DepartmentView.DepartmentViewListener {
 
     private final static String TAG = MainActivity.class.getSimpleName();
+    private SessionManager session;
 
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        session = new SessionManager(getApplicationContext());
+        session.setIsBackground(false);
         replaceFragment(511,"List", new SchoolDepartmentsModel());
     }
 
@@ -68,12 +72,17 @@ public class MainActivity extends AppCompatActivity implements SchoolDepartments
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        session.setIsBackground(true);
     }
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        session.setIsBackground(true);
+    }
     @Override
     public void onResume() {
         super.onResume();
+        session.setIsBackground(false);
         new Thread(new Runnable() {
             public void run() {
                 Intent broadcastIntent = new Intent();

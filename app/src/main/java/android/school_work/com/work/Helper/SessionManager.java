@@ -9,6 +9,7 @@ public class SessionManager {
     // Shared preferences file name
     private static final String PREF_NAME = "SchoolWorkSession";
     private static final String KEY_IS_VOLUME = "Volume";
+    private static final String KEY_IS_BACKGROUND = "IsBackground";
     // LogCat tag
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
@@ -28,9 +29,17 @@ public class SessionManager {
     public boolean getVolume() {
         return pref.getBoolean(KEY_IS_VOLUME, true);
     }
+    public boolean getIsBackground() {
+        return pref.getBoolean(KEY_IS_BACKGROUND, false);
+    }
 
     public void setVolume(boolean isLoggedIn) {
         editor.putBoolean(KEY_IS_VOLUME, isLoggedIn);
+        // commit changes
+        editor.commit();
+    }
+    public void setIsBackground(boolean isLoggedIn) {
+        editor.putBoolean(KEY_IS_BACKGROUND, isLoggedIn);
         // commit changes
         editor.commit();
     }
