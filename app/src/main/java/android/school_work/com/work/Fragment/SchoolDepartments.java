@@ -2,12 +2,12 @@ package android.school_work.com.work.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.os.SystemClock;
 import android.school_work.com.work.Adapter.DepartmentsAdapter;
 import android.school_work.com.work.Helper.CustomRVItemTouchListener;
 import android.school_work.com.work.Model.SchoolDepartmentsModel;
 import android.school_work.com.work.R;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-public class SchoolDepartments extends Fragment implements DepartmentsAdapter.AdapterListener{
+public class SchoolDepartments extends Fragment implements DepartmentsAdapter.AdapterListener {
 
     private static final String TAG = SchoolDepartments.class.getSimpleName();
 
@@ -36,7 +36,7 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
     View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-                if(v==retry) getsSchoolDepartments();
+            if (v == retry) getsSchoolDepartments();
         }
     };
 
@@ -88,7 +88,7 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
                 }
                 mLastClickTime = SystemClock.elapsedRealtime();
                 SchoolDepartmentsModel item = departmentsList.get(position);
-                if(mListener!=null) mListener.onSelection(item);
+                if (mListener != null) mListener.onSelection(item);
             }
 
             @Override
@@ -102,7 +102,10 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if(departmentsList.size()>0) { departmentsList.clear(); adapter.clearAll(); }
+                if (departmentsList.size() > 0) {
+                    departmentsList.clear();
+                    adapter.clearAll();
+                }
                 getsSchoolDepartments();
             }
         });
@@ -117,10 +120,9 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
             @Override
             public void onSuccess(ArrayList<SchoolDepartmentsModel> result) {
                 something_going_wrong.setVisibility(View.GONE);
-                Log.i(TAG,"result"+ result);
                 swipe_refresh.setRefreshing(false);
                 departmentsList = result;
-                adapter = new DepartmentsAdapter(result, mContext.getApplication(),SchoolDepartments.this);
+                adapter = new DepartmentsAdapter(result, mContext.getApplication(), SchoolDepartments.this);
                 schoolDepartmentsList.setAdapter(adapter);
                 schoolDepartmentsList.setLayoutManager(new LinearLayoutManager(mContext));
 
@@ -128,7 +130,6 @@ public class SchoolDepartments extends Fragment implements DepartmentsAdapter.Ad
 
             @Override
             public void onFailure(String message, boolean state, int code) {
-                Log.i(TAG,"onFailure:message "+ message);
                 swipe_refresh.setRefreshing(false);
                 something_going_wrong.setVisibility(View.VISIBLE);
             }

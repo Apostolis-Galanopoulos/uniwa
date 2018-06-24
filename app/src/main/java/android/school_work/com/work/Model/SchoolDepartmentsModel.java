@@ -91,7 +91,7 @@ public class SchoolDepartmentsModel implements Parcelable {
             public void onSuccess(JSONArray data) {
                 Log.i("callJsonResponse ", "SUCCESS");
                 SchoolDepartmentsModel item;
-                ArrayList<SchoolDepartmentsModel> membersList = new ArrayList<>();
+                ArrayList<SchoolDepartmentsModel> DepartmentsList = new ArrayList<>();
                 for (int i = 0; i < data.length(); i++) {
 
                     JSONObject row = null;
@@ -108,14 +108,14 @@ public class SchoolDepartmentsModel implements Parcelable {
                                 row.getString(SchoolDepartmentsModel.KEY_purpose),
                                 0
                         );
-                        membersList.add(item);
+                        DepartmentsList.add(item);
 
                     } catch (JSONException e) {
 //                            e.printStackTrace();
                         callback.onFailure("An error occurred during parsing data.", false, 1);
                     }
                 }
-                callback.onSuccess(membersList);
+                callback.onSuccess(DepartmentsList);
 
             }
         }, new WebServices.ErrorResponse() {

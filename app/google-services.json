@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "260388814163",
+    "firebase_url": "https://eais-info-uwa.firebaseio.com",
+    "project_id": "eais-info-uwa",
+    "storage_bucket": "eais-info-uwa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260388814163:android:8d83ba4545c8af74",
+        "android_client_info": {
+          "package_name": "android.school_work.com.work"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260388814163-aidqb73hrnbuvg27in6nq5e0agragjlr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBYsO5EU-VKdc-mSYvG-YOlsHcarla3dE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

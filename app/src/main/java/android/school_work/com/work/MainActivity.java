@@ -23,12 +23,11 @@ public class MainActivity extends AppCompatActivity implements SchoolDepartments
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        replaceFragment(511, new SchoolDepartmentsModel());
+        replaceFragment(511,"List", new SchoolDepartmentsModel());
     }
 
     @SuppressLint("ResourceType")
-    private void replaceFragment(int requestCode, SchoolDepartmentsModel department) {
+    private void replaceFragment(int requestCode,String FRAGMENT_TAG, SchoolDepartmentsModel department) {
         Fragment f = new Fragment();
 
         switch (requestCode) {
@@ -51,21 +50,19 @@ public class MainActivity extends AppCompatActivity implements SchoolDepartments
         else
             ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
 
-        ft.addToBackStack(null);
-        ft.replace(R.id.FragmentPlace, f);
+        ft.addToBackStack(FRAGMENT_TAG);
+        ft.replace(R.id.FragmentPlace, f,FRAGMENT_TAG);
         ft.commit();
     }
 
     @Override
     public void onSelection(SchoolDepartmentsModel row) {
-        Log.i(TAG, "ROW" + row);
-        replaceFragment(512, row);
+        replaceFragment(512,"View", row);
     }
 
     @Override
     public void onBack() {
-        Log.i(TAG, "onBack");
-        replaceFragment(511, new SchoolDepartmentsModel());
+        replaceFragment(511,"List", new SchoolDepartmentsModel());
     }
 
     @Override

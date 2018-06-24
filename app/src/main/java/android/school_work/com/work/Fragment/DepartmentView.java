@@ -12,7 +12,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +29,8 @@ public class DepartmentView extends Fragment {
     private static final String TAG = DepartmentView.class.getSimpleName();
 
     private Activity mContext;
-    private long mLastClickTime = 0;
     private SchoolDepartmentsModel department;
     private DepartmentViewListener mListener;
-    private boolean playSound = true;
 
 
     public static DepartmentView newInstance(SchoolDepartmentsModel department) {
@@ -85,7 +82,7 @@ public class DepartmentView extends Fragment {
         phone.setText(department.getPhoneSec());
 
         load(department.getPhotoUrl(), photoUrl);
-        Log.i(TAG, "department.getPhotoUrl() " + department.getPhotoUrl());
+
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -107,25 +104,22 @@ public class DepartmentView extends Fragment {
 
         myFab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (playSound) {
+                if (session.getVolume()) {
                     sound(false);
-                    playSound = false;
                     myFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_volume_off));
                     session.setVolume(false);
                 } else {
                     sound(true);
-                    playSound = true;
                     myFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_volume_up));
                     session.setVolume(true);
                 }
             }
         });
 
-        if(session.getVolume()) {
+        if (session.getVolume()) {
             sound(true);
             myFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_volume_up));
-        }
-        else
+        } else
             myFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ic_action_volume_off));
 
         return view;
@@ -142,6 +136,7 @@ public class DepartmentView extends Fragment {
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                         return false;
                     }
+
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         return false;
@@ -157,7 +152,7 @@ public class DepartmentView extends Fragment {
                 Intent broadcastIntent = new Intent();
                 broadcastIntent.setAction(SoundService.SoundStage);
                 broadcastIntent.putExtra("play", state);
-                if(getActivity()!=null) getActivity().sendBroadcast(broadcastIntent);
+                if (getActivity() != null) getActivity().sendBroadcast(broadcastIntent);
             }
         }).start();
     }

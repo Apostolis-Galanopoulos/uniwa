@@ -22,7 +22,7 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     Context context;
     private Fragment fragment;
     private DepartmentsAdapter.AdapterListener Adapter_listener;
-    private long mLastClickTime = 0, mLastClickTime1 = 0;
+    private long mLastClickTime = 0;
 
     public DepartmentsAdapter(ArrayList<SchoolDepartmentsModel> list, Context context, Fragment _fragment) {
         this.list = list;
@@ -57,14 +57,13 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final SchoolDepartmentsModel _model = list.get(position);
         if (position == (getItemCount() - 1)) {
-            if (SystemClock.elapsedRealtime() - mLastClickTime1 < 500) return;
-            mLastClickTime1 = SystemClock.elapsedRealtime();
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 500) return;
+            mLastClickTime = SystemClock.elapsedRealtime();
             Adapter_listener.ScrollEnding(position);
         }
 
         switch (_model.getType()) {
             case SchoolDepartmentsModel.NORMAL_TYPE:
-                //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
                 ((NormalTypeViewHolder) holder).name.setText(_model.getName());
                 break;
         }
