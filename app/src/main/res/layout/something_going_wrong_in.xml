@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/something_going_wrong_in_browse_banner" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Oops"
+            android:textColor="@color/very_dark_grayish_red1"
+            android:textSize="@dimen/text_display0"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="No internet found. \n check your connection or try again."
+            android:textColor="@color/Very_dark_mostly_black_red"
+            android:textSize="@dimen/text_body3"
+            android:textStyle="normal"
+            tools:ignore="HardcodedText" />
+
+        <RelativeLayout
+            android:id="@+id/retry"
+            android:layout_width="157dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="40dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@drawable/rounded_border">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Retry"
+                android:textColor="@color/Very_dark_mostly_black_red"
+                android:textSize="@dimen/text_body1"
+                android:textStyle="normal"
+                tools:ignore="HardcodedText" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
