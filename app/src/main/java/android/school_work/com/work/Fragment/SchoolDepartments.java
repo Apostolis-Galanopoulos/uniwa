@@ -78,7 +78,6 @@ public class SchoolDepartments extends Fragment {
         schoolDepartmentsList = view.findViewById(R.id.schoolDepartmentsList);
         swipe_refresh = view.findViewById(R.id.swipe_refresh);
 
-
         schoolDepartmentsList.addOnItemTouchListener(new CustomRVItemTouchListener(getContext(), schoolDepartmentsList, new DepartmentsAdapter.RecyclerViewItemClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -98,6 +97,7 @@ public class SchoolDepartments extends Fragment {
             }
         }));
         swipe_refresh.setRefreshing(true);
+        setupAdapter();
         getsSchoolDepartments();
         swipe_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -118,14 +118,11 @@ public class SchoolDepartments extends Fragment {
 
         SchoolDepartmentsModel.getSchoolDepartments(new SchoolDepartmentsModel.getProviderData() {
             @Override
-            public void onSuccess(ArrayList<SchoolDepartmentsModel> result) {
+            public void onSuccess(final ArrayList<SchoolDepartmentsModel> result) {
                 something_going_wrong.setVisibility(View.GONE);
                 swipe_refresh.setRefreshing(false);
                 departmentsList = result;
-                adapter = new DepartmentsAdapter(result, mContext.getApplication());
-                schoolDepartmentsList.setAdapter(adapter);
-                schoolDepartmentsList.setLayoutManager(new LinearLayoutManager(mContext));
-
+                setupAdapter();
             }
 
             @Override
@@ -136,6 +133,11 @@ public class SchoolDepartments extends Fragment {
         });
     }
 
+    private void setupAdapter() {
+        adapter = new DepartmentsAdapter(departmentsList, mContext.getApplication());
+        schoolDepartmentsList.setLayoutManager(new LinearLayoutManager(mContext));
+        schoolDepartmentsList.setAdapter(adapter);
+    }
 
     public interface SchoolDepartmentsListener {
         void onSelection(SchoolDepartmentsModel row);

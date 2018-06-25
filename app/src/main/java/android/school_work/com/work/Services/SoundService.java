@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.school_work.com.work.Helper.AppConfig;
 import android.school_work.com.work.R;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -88,7 +89,7 @@ public class SoundService extends Service {
 
             NotificationManager nm = (NotificationManager) this
                     .getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel channel = new NotificationChannel("SchoolWork",
+            NotificationChannel channel = new NotificationChannel(AppConfig.CHANNELID,
                     "SchoolWork Channel",
                     NotificationManager.IMPORTANCE_HIGH);
             channel.setDescription("The user-visible description of the channel.");
@@ -100,7 +101,7 @@ public class SoundService extends Service {
             channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
             nm.createNotificationChannel(channel);
 
-            Notification.Builder builder = new Notification.Builder(this, "SchoolWork")
+            Notification.Builder builder = new Notification.Builder(this, AppConfig.CHANNELID)
                     .setPriority(Notification.PRIORITY_DEFAULT)
                     .setAutoCancel(true);
             Notification notification = builder.build();

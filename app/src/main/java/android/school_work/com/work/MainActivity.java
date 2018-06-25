@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements SchoolDepartments
                 break;
         }
 
-        f.setArguments(getIntent().getExtras());
+//        f.setArguments(getIntent().getExtras());
         Bundle args = new Bundle();
         args.putParcelable("department", department);
         f.setArguments(args);

@@ -8,6 +8,7 @@
     <color name="gray_light">#E4E4E4</color>
     <color name="uwa_color">#515658</color>
     <color name="white">#ffffff</color>
+    <color name="transparency">#00ffffff</color>
     <color name="Very_dark_gray">#3D3D3D</color>
     <color name="very_dark_grayish_red1">#3b3939</color>
     <color name="Very_dark_mostly_black_red">#312f2f</color>

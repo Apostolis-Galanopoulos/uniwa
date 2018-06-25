@@ -51,7 +51,7 @@ public class SchoolWorkNotification {
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("SchoolWork",
+            NotificationChannel channel = new NotificationChannel(channelId,
                     "SchoolWork Channel",
                     NotificationManager.IMPORTANCE_HIGH);
             channel.setDescription("The user-visible description of the channel.");
