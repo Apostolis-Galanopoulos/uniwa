@@ -1,9 +1,6 @@
 package android.school_work.com.work.Helper;
 
-/**
- * Created by userModel on 7/3/2017.
- */
- import android.app.Application;
+import android.app.Application;
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -13,19 +10,17 @@ import com.android.volley.toolbox.Volley;
 public class AppController extends Application {
 
     public static final String TAG = AppController.class.getSimpleName();
-
+    private static AppController mInstance;
     private RequestQueue mRequestQueue;
 
-    private static AppController mInstance;
+    public static synchronized AppController getInstance() {
+        return mInstance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-    }
-
-    public static synchronized AppController getInstance() {
-        return mInstance;
     }
 
     public RequestQueue getRequestQueue() {
