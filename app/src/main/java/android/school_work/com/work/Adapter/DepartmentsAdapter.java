@@ -16,8 +16,9 @@ import java.util.ArrayList;
 
 public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    ArrayList<SchoolDepartmentsModel> list = new ArrayList<>();
-    Context context;
+
+   private ArrayList<SchoolDepartmentsModel> list = new ArrayList<>();
+   private   Context context;
 
     public DepartmentsAdapter(ArrayList<SchoolDepartmentsModel> list, Context context) {
         this.list = list;
@@ -67,12 +68,6 @@ public class DepartmentsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-    }
-
-    // Insert a new item to the RecyclerView on a predefined position
-    public void insert(int position, SchoolDepartmentsModel data) {
-        list.add(position, data);
-        notifyItemInserted(position);
     }
 
     public void animate(RecyclerView.ViewHolder viewHolder) {

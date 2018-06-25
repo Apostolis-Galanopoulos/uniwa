@@ -10,7 +10,7 @@ public class SessionManager {
     private static final String PREF_NAME = "SchoolWorkSession";
     private static final String KEY_IS_VOLUME = "Volume";
     private static final String KEY_IS_BACKGROUND = "IsBackground";
-    // LogCat tag
+
     private static String TAG = SessionManager.class.getSimpleName();
     // Shared Preferences
     SharedPreferences pref;
@@ -33,13 +33,13 @@ public class SessionManager {
         return pref.getBoolean(KEY_IS_BACKGROUND, false);
     }
 
-    public void setVolume(boolean isLoggedIn) {
-        editor.putBoolean(KEY_IS_VOLUME, isLoggedIn);
+    public void setVolume(boolean enable_volume) {
+        editor.putBoolean(KEY_IS_VOLUME, enable_volume);
         // commit changes
         editor.commit();
     }
-    public void setIsBackground(boolean isLoggedIn) {
-        editor.putBoolean(KEY_IS_BACKGROUND, isLoggedIn);
+    public void setIsBackground(boolean enable_volume) {
+        editor.putBoolean(KEY_IS_BACKGROUND, enable_volume);
         // commit changes
         editor.commit();
     }
